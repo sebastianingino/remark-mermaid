@@ -1,5 +1,8 @@
+diff --git a/node_modules/svgdom/.bun-tag-fdef38836cb2e2b1 b/.bun-tag-fdef38836cb2e2b1
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/dist/main-require.cjs b/dist/main-require.cjs
-index df8f31b90378b218af256ece769502cf407a7ffd..286280bef8ba9c314e7fe343a4468da09e522196 100644
+index df8f31b90378b218af256ece769502cf407a7ffd..799b098e83cc679ca4f5a284af34d3fa391a1c32 100644
 --- a/dist/main-require.cjs
 +++ b/dist/main-require.cjs
 @@ -678,6 +678,18 @@ const getStyleProxy = (node) => {
