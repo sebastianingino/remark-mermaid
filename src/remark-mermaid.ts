@@ -1,8 +1,8 @@
 import { createHTMLWindow } from "svgdom";
 import mermaid, { type MermaidConfig } from "mermaid";
-import createDOMPurify from "dompurify";
+import createDOMPurify, { WindowLike } from "dompurify";
 import { JSDOM } from "jsdom";
-import { type BlockContent, type Code, type Parent } from "mdast";
+import { Root, type BlockContent, type Code, type Parent } from "mdast";
 import { type ElementContent } from "hast";
 import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";
@@ -10,14 +10,11 @@ import { type VFile } from "vfile";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 
 const _window = new JSDOM("").window;
-const DOMPurify = createDOMPurify(_window);
+const DOMPurify = createDOMPurify(_window as WindowLike);
 Object.assign(createDOMPurify, DOMPurify);
 
 const svgWindow = createHTMLWindow();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(globalThis as any).window = svgWindow;
-globalThis.document = window.document;
-globalThis["Element"] = window["Element"];
+globalThis.document = svgWindow.document;
 
 export interface RemarkMermaidOptions
   extends MermaidConfig,
@@ -71,7 +68,7 @@ const render = async (
   }
 };
 
-const remarkMermaid: Plugin<[RemarkMermaidOptions?]> = (options) => {
+const remarkMermaid: Plugin<[RemarkMermaidOptions?], Root> = (options) => {
   return (ast, file) => {
     const instances: Array<{ parent: Parent; node: Code }> = [];
 
