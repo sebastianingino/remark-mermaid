@@ -8,7 +8,7 @@
   "scripts": {
     "build": "bun build src/remark-mermaid.ts --outdir dist --target node --minify && tsc --declaration --emitDeclarationOnly",
     "test": "bun test",
-    "lint": "bun run eslint . --ext .ts"
+    "lint": "bun run eslint src --ext .ts"
   },
   "author": "Sebastian Ingino <sebastian@ingino.me>",
   "license": "MIT",

@@ -14,6 +14,7 @@ const DOMPurify = createDOMPurify(_window);
 Object.assign(createDOMPurify, DOMPurify);
 
 const svgWindow = createHTMLWindow();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (globalThis as any).window = svgWindow;
 globalThis.document = window.document;
 globalThis["Element"] = window["Element"];
@@ -34,7 +35,6 @@ export interface RemarkMermaidOptions
    *   A fallback node to render instead of the invalid diagram. If nothing is returned, the code
    *   block is removed
    */
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   errorFallback?: (
     node: Code,
     error: string,
@@ -78,9 +78,9 @@ const remarkMermaid: Plugin<[RemarkMermaidOptions?]> = (options) => {
     visitParents(
       ast,
       { type: "code", lang: "mermaid" },
-      (node: Code, ancestors) => {
+      (node: Code, ancestors: Parent[]) => {
         instances.push({
-          parent: ancestors[ancestors.length - 1] as any,
+          parent: ancestors[ancestors.length - 1] as Parent,
           node,
         });
       },
