@@ -24,17 +24,24 @@ for (const dir of glob.scanSync({ cwd: fixtures, onlyFiles: false })) {
 
   test(`remark-mermaid: ${dir}`, async () => {
     const inputContent = await input.text();
-    const vfile = new VFile({ path: "input.md", value: inputContent });
 
     const expectedMarkdownContent = await expectedMarkdown.text();
     const expectedHTMLContent = await expectedHTML.text();
 
     const markdownResult = await remark()
       .use(remarkMermaid, options)
-      .process(vfile);
-    //   console.log(markdownResult.value);
+      .process(new VFile({ path: "input.md", value: inputContent }));
 
     expect(markdownResult.value).toBe(expectedMarkdownContent);
+
+    const htmlResult = await remark()
+      .use(remarkMermaid, options)
+      .use(remarkRehype)
+      .use(rehypeStringify)
+      .process(new VFile({ path: "input.md", value: inputContent }));
+
+      // console.log(htmlResult.value);
+    expect(htmlResult.value.toString().trim()).toBe(expectedHTMLContent.trim());
   });
 }
 

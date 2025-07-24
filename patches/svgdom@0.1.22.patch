@@ -1,0 +1,43 @@
+diff --git a/dist/main-require.cjs b/dist/main-require.cjs
+index df8f31b90378b218af256ece769502cf407a7ffd..286280bef8ba9c314e7fe343a4468da09e522196 100644
+--- a/dist/main-require.cjs
++++ b/dist/main-require.cjs
+@@ -678,6 +678,18 @@ const getStyleProxy = (node) => {
+         }
+       }
+ 
++      if (key === 'removeProperty') {
++        return function (propertyName) {
++          const styles = node.getAttribute('style') || ''
++          const styleMap = (0,_utils_mapUtils_js__WEBPACK_IMPORTED_MODULE_7__.cssToMap)(styles)
++          const decamelizedPropertyName = (0,_utils_strUtils_js__WEBPACK_IMPORTED_MODULE_8__.decamelize)(propertyName)
++          if (styleMap.has(decamelizedPropertyName)) {
++            styleMap.delete(decamelizedPropertyName)
++            node.setAttribute('style', (0,_utils_mapUtils_js__WEBPACK_IMPORTED_MODULE_7__.mapToCss)(styleMap))
++          }
++        }
++      }
++
+       if (key === 'getPropertyValue') {
+         return function (propertyName) {
+           return node.style[propertyName] ?? ''
+diff --git a/src/dom/Element.js b/src/dom/Element.js
+index d58f7f2939d2a53d842749b0c800a09344b221f8..e3b8ae158d68045207618e2c9148d937b1bc00db 100644
+--- a/src/dom/Element.js
++++ b/src/dom/Element.js
+@@ -72,6 +72,15 @@ const getStyleProxy = (node) => {
+         }
+       }
+ 
++      if (key === 'removeProperty') {
++        return function (propertyName) {
++          const styles = node.getAttribute('style') || ''
++          const styleMap = cssToMap(styles)
++          styleMap.delete(decamelize(propertyName))
++          node.setAttribute('style', mapToCss(styleMap))
++        }
++      }
++
+       if (key === 'getPropertyValue') {
+         return function (propertyName) {
+           return node.style[propertyName] ?? ''

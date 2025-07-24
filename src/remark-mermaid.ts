@@ -2,7 +2,7 @@ import { createHTMLWindow } from "svgdom";
 import mermaid, { type MermaidConfig } from "mermaid";
 import createDOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
-import { type BlockContent, type Code, type Parent, type Root } from "mdast";
+import { type BlockContent, type Code, type Parent } from "mdast";
 import { type ElementContent } from "hast";
 import { type Plugin } from "unified";
 import { visitParents } from "unist-util-visit-parents";

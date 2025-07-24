@@ -6,7 +6,7 @@
   "main": "./dist/remark-mermaid.js",
   "type": "module",
   "scripts": {
-    "build": "bun build src/remark-mermaid.ts --outdir dist --target node",
+    "build": "bun build src/remark-mermaid.ts --outdir dist --target node --minify && tsc --declaration --emitDeclarationOnly",
     "test": "bun test",
     "lint": "bun run eslint . --ext .ts"
   },
@@ -26,8 +26,8 @@
     "dompurify": "^3.2.6",
     "hast-util-from-html-isomorphic": "^2.0.0",
     "jsdom": "^26.1.0",
-    "mdast": "^3.0.0",
     "mermaid": "^11.9.0",
+    "remark": "^15.0.1",
     "resvg": "^1.6.4",
     "svgdom": "^0.1.22",
     "unified": "^11.0.5",
@@ -39,10 +39,12 @@
     "@types/jsdom": "^21.1.7",
     "@types/svgdom": "^0.1.2",
     "rehype-stringify": "^10.0.1",
-    "remark": "^15.0.1",
     "remark-rehype": "^11.1.2"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "patchedDependencies": {
+    "svgdom@0.1.22": "patches/svgdom@0.1.22.patch"
   }
 }

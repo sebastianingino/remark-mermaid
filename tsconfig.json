@@ -1,4 +1,7 @@
 {
+  "include": [
+    "src/*",
+  ],
   "compilerOptions": {
     // Environment setup & latest features
     "lib": ["ESNext"],
@@ -24,6 +27,12 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+
+    // Build output
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationMap": true,
   }
 }
