@@ -1,6 +1,4 @@
-/** @type {import('remark-mermaidjs').RemarkMermaidOptions} */
+/** @type {import('remark-mermaid').RemarkMermaidOptions} */
 export default {
-  mermaidConfig: {
-    theme: 'forest'
-  }
-}
+  theme: "forest",
+};

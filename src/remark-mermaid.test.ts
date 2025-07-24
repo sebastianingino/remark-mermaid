@@ -40,25 +40,6 @@ for (const dir of glob.scanSync({ cwd: fixtures, onlyFiles: false })) {
       .use(rehypeStringify)
       .process(new VFile({ path: "input.md", value: inputContent }));
 
-      // console.log(htmlResult.value);
     expect(htmlResult.value.toString().trim()).toBe(expectedHTMLContent.trim());
   });
 }
-
-// testFixturesDirectory<RemarkMermaidOptions>({
-//   directory: new URL("../fixtures", import.meta.url),
-//   prettier: true,
-//   tests: {
-//     "expected.md"(input, options) {
-//       return remark().use(remarkMermaid, options).process(input);
-//     },
-
-//     "expected.html"(input, options) {
-//       return remark()
-//         .use(remarkMermaid, options)
-//         .use(remarkRehype)
-//         .use(rehypeStringify)
-//         .process(input);
-//     },
-//   },
-// });

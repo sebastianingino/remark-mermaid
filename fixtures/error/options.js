@@ -1,4 +1,4 @@
-/** @type {import('remark-mermaidjs').RemarkMermaidOptions} */
+/** @type {import('remark-mermaid').RemarkMermaidOptions} */
 export default {
   errorFallback(node, error, vfile) {
     return {
