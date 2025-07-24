@@ -1,6 +1,6 @@
 {
   "name": "remark-mermaid-svg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A remark plugin that replaces Mermaid diagrams with SVGs (without Playwright!).",
   "exports": "./dist/remark-mermaid.js",
   "main": "./dist/remark-mermaid.js",
