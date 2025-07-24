@@ -49,7 +49,7 @@ for (const dir of glob.scanSync({ cwd: fixtures, onlyFiles: false })) {
 }
 
 test("remark-mermaid mdx", async () => {
-  const input = Bun.file("./test/input.mdx");
+  const input = Bun.file("./test/mdx/input.mdx");
   const inputContent = await input.text();
 
   const file = (await evaluate(new VFile({ path: "input.mdx", value: inputContent }), {
@@ -59,7 +59,7 @@ test("remark-mermaid mdx", async () => {
   })).default;
 
   const html = renderToString(createElement(file));
-  const expectedHTML = await Bun.file("./test/expected.mdx.html").text();
+  const expectedHTML = await Bun.file("./test/mdx/expected.mdx.html").text();
 
   expect(html.trim()).toBe(expectedHTML.trim());
 });
